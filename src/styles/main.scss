@@ -9,9 +9,9 @@
 // $teal: #20c997 !default;
 // $cyan: #17a2b8 !default;
 
-// $theme-colors: (
-//     "primary": #075e54,
-//     "danger": #ff4136,
-// );
+$theme-colors: (
+    "primary": #111430,
+    "warning": #fbd062,
+);
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
