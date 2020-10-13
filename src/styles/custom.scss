@@ -1,0 +1,40 @@
+.width-side {
+    width: 20%;
+}
+.width-main {
+    width: 80%;
+}
+.width-100 {
+    width: 100%;
+}
+.bg-admin {
+    background-color: #f4f7fc;
+}
+.order-form .form-control {
+    border: none;
+    font-size: 16px;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+.up-btn {
+    background-color: #deffed;
+    border: 1px solid #57b785;
+    color: #57b785;
+    font-weight: 600;
+    &:hover {
+        background-color: #317c55;
+        color: white;
+        cursor: pointer;
+    }
+}
+.upload-btn-wrapper input[type="file"] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}

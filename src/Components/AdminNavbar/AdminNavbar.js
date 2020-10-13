@@ -1,9 +1,16 @@
 import React from 'react';
+import { LogoBrand } from '../../images';
+import "./AdminNavbar.scss"
 
 const AdminNavbar = () => {
     return (
         <>
-            <div className="w-100 px-5">
+            <div className="d-flex bg-white py-3 align-items-center">
+                <div className="width-side pl-5"><img src={LogoBrand} alt="creative-agency" className="admin-logo" /> </div>
+                <div className="width-main d-flex justify-content-between px-5">
+                    <h3 className="mb-0">Order</h3>
+                    <p className="font-weight-bold mb-0">Swajan</p>
+                </div>
             </div>
         </>
     );

@@ -1,0 +1,13 @@
+.sidebar-icon {
+    font-size: 25px;
+}
+.sidebar-item {
+    cursor: pointer;
+    &:hover {
+        color: #67d89e;
+        text-decoration: none;
+    }
+}
+.sidebar-item.active {
+    color: #57b785;
+}
