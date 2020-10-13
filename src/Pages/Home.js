@@ -1,4 +1,5 @@
 import React from 'react';
+import ContactUs from '../Components/ContactUs/ContactUs';
 import HeaderMain from '../Components/HeaderMain/HeaderMain';
 import HeroComponent from '../Components/HeroComponent/HeroComponent';
 import OurCustomers from '../Components/OurCustomers/OurCustomers';
@@ -14,6 +15,7 @@ const Home = () => {
             <Services />
             <OurWorks />
             <Testimonials />
+            <ContactUs />
         </>
     );
 };
