@@ -9,4 +9,8 @@ import OneServiceIco from "./icons/service1.png"
 import TwoServiceIco from "./icons/service2.png"
 import ThreeServiceIco from "./icons/service3.png"
 
-export {LogoAir, LogoGle, LogoBrand, LogoNflix, LogoSlack, LogoUber, OneServiceIco, TwoServiceIco, ThreeServiceIco}
+import CustomerOne from "./customer-1.png"
+import CustomerTwo from "./customer-2.png"
+import CustomerThree from "./customer-3.png"
+
+export { CustomerOne, CustomerTwo, CustomerThree, LogoAir, LogoGle, LogoBrand, LogoNflix, LogoSlack, LogoUber, OneServiceIco, TwoServiceIco, ThreeServiceIco }
