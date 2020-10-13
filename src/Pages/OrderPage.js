@@ -15,28 +15,31 @@ const OrderPage = () => {
             id: 1,
             icon: biC,
             text: "Order",
-            status: " active"
+            status: " active",
+            url: "/orders"
 
         },
         {
             id: 2,
             icon: biShoppingBag,
             text: "Service list",
+            url: "/services"
         },
         {
             id: 1,
             icon: mdRate,
-            text: "Review"
+            text: "Review",
+            url: "/reviews"
         },
     ]
     return (
         <div>
-            <AdminNavbar />
+            <AdminNavbar pageTitle="Order new" />
             <div className="d-flex">
                 <div className="width-side">
                     <AdminSidebar sideBarItems={sideBarItems} />
                 </div>
-                <div className="width-main bg-light px-4 py-5">
+                <div className="width-main bg-admin px-4 py-5">
                     <div className="row pt-3 pl-4">
                         <div className="col-7">
                             <form className="order-form">
