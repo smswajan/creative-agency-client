@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
-import { LogoAir, LogoGle, LogoNflix, LogoSlack, LogoUber } from '../../images';
+import { LogoAir, LogoGle, LogoNflix, LogoSlack, LogoUber } from '../../../images';
 import "./OurCustomers.scss"
 
 const OurCustomers = () => {

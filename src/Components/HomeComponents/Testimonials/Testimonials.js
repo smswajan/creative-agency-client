@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row } from 'react-bootstrap';
-import { CustomerOne, CustomerThree, CustomerTwo } from '../../images';
+import { CustomerOne, CustomerThree, CustomerTwo } from '../../../images';
 import TestimonialCard from './TestimonialCard';
 import "./Testimonials.scss"
 

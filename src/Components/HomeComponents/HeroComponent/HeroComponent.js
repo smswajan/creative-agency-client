@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import HeaderMain from '../HeaderMain/HeaderMain';
 import "./HeroComponent.scss"
-import HeroFrame from "../../images/logos/Frame.png"
+import HeroFrame from "../../../images/logos/Frame.png"
 
 const HeroComponent = () => {
     return (

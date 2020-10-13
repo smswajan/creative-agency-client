@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
-import { LogoBrand } from '../../images';
+import { LogoBrand } from '../../../images';
 import "./HeaderMain.scss"
 
 const HeaderMain = () => {

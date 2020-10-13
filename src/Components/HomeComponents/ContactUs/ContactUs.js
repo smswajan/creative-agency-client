@@ -4,8 +4,8 @@ import "./ContactUs.scss"
 const ContactUs = () => {
     return (
         <section className="bg-warning py-5 contact">
-            <div className="container">
-                <div className="row">
+            <div className="container mt-4">
+                <div className="row mb-5">
                     <div className="col-md-6 pr-md-5">
                         <h2 className="text-primary">Let us handle your <br /> project professionally.</h2>
                         <p>With well written codes, w build amazing apps for all platforms, mobile and web apps in general.</p>
@@ -19,6 +19,8 @@ const ContactUs = () => {
                         </form>
                     </div>
                 </div>
+                <p className="text-center mt-5 pt-3 text-primary">&copy; Orange labs 2020</p>
+
             </div>
         </section>
     );

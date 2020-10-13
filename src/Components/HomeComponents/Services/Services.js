@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
-import { OneServiceIco, ThreeServiceIco, TwoServiceIco } from '../../images';
+import { OneServiceIco, ThreeServiceIco, TwoServiceIco } from '../../../images';
 import "./Services.scss"
 
 const Services = () => {
@@ -48,7 +48,7 @@ const ServiceCard = ({ info }) => {
         <div className="col-md-4 p-4">
             <div className="service-card p-5 text-center">
                 <img src={icon} alt="" className="service-icon mb-3" />
-                <h4 className="mb-3" >Title</h4>
+                <h4 className="mb-3" >{title} </h4>
                 <p>{description}</p>
             </div>
         </div>
