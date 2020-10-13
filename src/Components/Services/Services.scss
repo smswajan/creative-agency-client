@@ -1,0 +1,10 @@
+.service-icon {
+    max-height: 95px;
+}
+.service-card:hover {
+    cursor: pointer;
+    box-shadow: 0 0 60px rgba(68, 68, 68, 0.195);
+    border-radius: 10px;
+    transform: translateY(-4px);
+    transition: all 0.3s ease-in;
+}
