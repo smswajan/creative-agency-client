@@ -7,6 +7,8 @@ import { IconContext } from 'react-icons'
 import { BiCart, BiShoppingBag } from 'react-icons/bi'
 import { MdRateReview } from 'react-icons/md';
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { useEffect } from 'react';
 const biC = <BiCart className="sidebar-icon" />
 const biShoppingBag = <BiShoppingBag className="sidebar-icon" />
 const mdRate = <MdRateReview className="sidebar-icon" />
@@ -34,9 +36,21 @@ const sideBarItems = [
 ]
 const OrderPage = () => {
     const { register, handleSubmit } = useForm();
+    const [services, setServices] = useState();
+    useEffect(() => {
+        fetch('http://localhost:4000/services', {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                setServices(result)
+            })
+    }, [])
     const onSubmit = (data, e) => {
         data.status = "Pending";
         data.price = Number(data.price)
+        console.log(data);
         fetch('http://localhost:4000/add-order', {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -59,7 +73,11 @@ const OrderPage = () => {
                             <form onSubmit={handleSubmit(onSubmit)} className="order-form">
                                 <input ref={register({ required: true })} type="text" name="name" placeholder="Your name / company's name" id="" className="form-control-lg mb-3 py-4 form-control" />
                                 <input ref={register({ required: true })} type="email" name="email" className="form-control-lg mb-3 py-4 form-control" placeholder="Your email address" />
-                                <input ref={register({ required: true })} type="text" name="category" className="form-control-lg mb-3 py-4 form-control" placeholder="Graphics design" />
+                                {/* <input ref={register({ required: true })} type="text" name="category" className="form-control-lg mb-3 py-4 form-control" placeholder="Graphics design" /> */}
+                                <select name="category" ref={register({ required: true })} className="custom-select mb-3" >
+                                    <option >Select your service</option>
+                                    {services && services.map(item => <option value={item._id}>{item.title} </option>)}
+                                </select>
                                 <textarea ref={register({ required: true })} placeholder="Project Details" name="details" cols="30" rows="4" className="form-control-lg mb-3 py-4 form-control"></textarea>
                                 <div className="row mb-5">
                                     <div className="col-6">
