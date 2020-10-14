@@ -1,16 +1,7 @@
-// import firebase from "firebase";
-// import "firebase/auth";
-// import firebaseConfig from "../firebase-config";
+import * as firebase from "firebase/app";
+import "firebase/auth"
+import firebaseConfig from "../firebase-config";
 
-// const fireApp = firebase.initializeApp(firebaseConfig);
-// fireApp
-//     .firestore()
-//     .enablePersistence()
-//     .catch((err) => {
-//         if (err.code === "failed-precondition") {
-//             console.log(err);
-//         } else console.log(err);
-//     });
+const fireApp = firebase.initializeApp(firebaseConfig);
 
-// export default fireApp;
-// export const fireStoreDB = fireApp.firestore();
+export default fireApp;

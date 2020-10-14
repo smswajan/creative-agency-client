@@ -1,19 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Main from './Pages/Main';
 import { useState } from 'react';
 import { createContext } from 'react';
-
-export const UserContext = createContext();
+import { AuthContextProvider } from './Hooks/useAuth';
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState({});
   return (
     <>
-      <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+      <AuthContextProvider>
         <Main />
-      </UserContext.Provider>
+      </AuthContextProvider>
     </>
   );
 }

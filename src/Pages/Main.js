@@ -8,7 +8,7 @@ import AdminServiceList from './AdminServiceList';
 import AdminAddService from './AdminAddService';
 import AdminMakeAdmin from './AdminMakeAdmin';
 import LoginPage from './LoginPage';
-import PrivateRoute from '../Components/PrivateRoute';
+import { PrivateRoute } from '../Hooks/useAuth';
 
 
 const Main = () => {

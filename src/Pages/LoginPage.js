@@ -7,24 +7,21 @@ import GoogleIcon from "../images/icons/google.png"
 import { Container } from 'react-bootstrap';
 import { UserContext } from '../App';
 import firebaseConfig from '../firebase-config';
+import { LogoBrand } from '../images';
 
 
 const LoginPage = () => {
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    console.log("logged in user", loggedInUser);
     let history = useHistory();
     let location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } };
-    if (firebase.apps.length === 0) {
-        firebase.initializeApp(firebaseConfig);
-    }
+
 
     const handleGoogleSignIn = () => {
         var provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider).then(function (result) {
+            console.log(result.user);
             const { displayName, email } = result.user;
             const signedInUser = { name: displayName, email }
-            setLoggedInUser(signedInUser);
             storeAuthToken();
         }).catch(function (error) {
             const errorMessage = error.message;
@@ -43,7 +40,6 @@ const LoginPage = () => {
     }
     const signOut = () => {
         firebase.auth().signOut().then(res => {
-            setLoggedInUser({})
             console.log("logged out");
             sessionStorage.removeItem("token")
         }).catch(err => {
@@ -54,12 +50,16 @@ const LoginPage = () => {
         <div>
             <Container>
                 <div className="row pt-5">
-                    <div className="col-md-5 mt-5 offset-md-3">
+                    <div className="col-md-6 mt-5 offset-md-3  text-center">
+                        <a href="/">
+                            <img src={LogoBrand} className="logo-brand mb-5" alt="brand" />
+                        </a>
                         <div className="p-5 login-container">
+
                             <h3 className="text-center mb-3 mt-5">
                                 Login With
                             </h3>
-                            <button onClick={handleGoogleSignIn} className="btn custom-auth-btn btn-block py-3 mb-3">
+                            <button onClick={handleGoogleSignIn} className="btn custom-auth-btn btn-block py-3 mb-3 mt-3">
                                 <img src={GoogleIcon} alt="" />
                                 Continue with Google
                             </button>
