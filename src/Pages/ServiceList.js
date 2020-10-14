@@ -54,7 +54,7 @@ const ServiceList = () => {
                     <div className="width-main pt-3 pl-4">
                         <div className="row">
                             {
-                                orders.map(item => <ServiceCardAdmin />)
+                                orders.map(item => <ServiceCardAdmin status={item.status} category={item.category} key={item._id} />)
                             }
 
                         </div>

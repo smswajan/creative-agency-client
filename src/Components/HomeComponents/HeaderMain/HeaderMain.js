@@ -16,10 +16,10 @@ const HeaderMain = () => {
                     <Navbar.Collapse id="agency-navbar">
                         <Nav className="ml-auto text-center">
                             <Nav.Link href="/" className="mr-5" >Home</Nav.Link>
-                            <Nav.Link href="/" className="mr-5" >Our Portfolio</Nav.Link>
-                            <Nav.Link href="/" className="mr-5" >Our Team</Nav.Link>
-                            <Nav.Link href="/" className="mr-5" >Contact US</Nav.Link>
-                            <Button href="/" className="px-5">Login</Button>
+                            <Nav.Link href="/orders" className="mr-5" >Order New</Nav.Link>
+                            <Nav.Link href="/services" className="mr-5" >My Services</Nav.Link>
+                            <Nav.Link href="/reviews" className="mr-5" >Add Review</Nav.Link>
+                            <Button href="/admin/service-list" className="px-5">Admin</Button>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
