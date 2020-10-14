@@ -1,4 +1,5 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import { BiCart, BiShoppingBag } from 'react-icons/bi'
 import { MdRateReview } from 'react-icons/md';
 import AdminNavbar from '../Components/AdminNavbar/AdminNavbar';
@@ -35,6 +36,34 @@ const sideBarItems = [
 ]
 
 const AddReview = () => {
+    const { register, handleSubmit } = useForm();
+    const handleFormSubmit = (data, e) => {
+        data.icon = data.icon[0]
+        const formData = new FormData();
+        formData.append('icon', data.icon);
+        formData.append('title', data.title)
+        formData.append('description', data.description)
+        fetch('http://localhost:4000/add-service', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                e.target.reset()
+            })
+        console.log(data);
+    }
+    const onSubmit = (data, e) => {
+        fetch('http://localhost:4000/add-review', {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+        }).then(response => response.json()).then(result => {
+            console.log(result);
+            e.target.reset()
+        })
+    }
     return (
         <div>
             <AdminNavbar pageTitle="Add Review" />
@@ -46,12 +75,12 @@ const AddReview = () => {
                     <div className="width-main pt-3 pl-4">
                         <div className="row pt-3 pl-4">
                             <div className="col-7">
-                                <form className="order-form">
-                                    <input type="text" name="name" className="form-control-lg mb-3 py-4 form-control" placeholder="Your name" />
-                                    <input type="text" name="company" placeholder="Company's name, Designation" id="" className="form-control-lg mb-3 py-4 form-control" />
-                                    <textarea placeholder="Project Details" name="message" cols="30" rows="4" className="form-control-lg mb-3 py-4 form-control mb-5"></textarea>
+                                <form onSubmit={handleSubmit(onSubmit)} className="order-form">
+                                    <input ref={register({ required: true })} type="text" name="name" className="form-control-lg mb-3 py-4 form-control" placeholder="Your name" />
+                                    <input ref={register({ required: true })} type="text" name="company" placeholder="Company's name, Designation" id="" className="form-control-lg mb-3 py-4 form-control" />
+                                    <textarea ref={register({ required: true })} placeholder="Your feedback" name="review" cols="30" rows="4" className="form-control-lg mb-3 py-4 form-control mb-5"></textarea>
 
-                                    <button className="btn btn-primary px-5 py-3">Send</button>
+                                    <button type="submit" className="btn btn-primary px-5 py-3">Send</button>
                                 </form>
                             </div>
                         </div>
