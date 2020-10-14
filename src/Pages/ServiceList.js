@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 import { BiCart, BiShoppingBag } from 'react-icons/bi'
 import { MdRateReview } from 'react-icons/md';
 import ServiceCardAdmin from '../Components/AdminComponents/ServiceCardAdmin/ServiceCardAdmin';
@@ -33,6 +34,15 @@ const sideBarItems = [
     },
 ]
 const ServiceList = () => {
+    const [orders, setOrders] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:4000/orders', { method: 'GET' })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                setOrders(result)
+            })
+    }, [])
     return (
         <div>
             <AdminNavbar pageTitle="My Services" />
@@ -43,8 +53,10 @@ const ServiceList = () => {
                 <div className="width-main bg-admin px-4 py-5">
                     <div className="width-main pt-3 pl-4">
                         <div className="row">
-                            <ServiceCardAdmin />
-                            <ServiceCardAdmin />
+                            {
+                                orders.map(item => <ServiceCardAdmin />)
+                            }
+
                         </div>
                     </div>
                 </div>

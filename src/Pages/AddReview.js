@@ -37,23 +37,7 @@ const sideBarItems = [
 
 const AddReview = () => {
     const { register, handleSubmit } = useForm();
-    const handleFormSubmit = (data, e) => {
-        data.icon = data.icon[0]
-        const formData = new FormData();
-        formData.append('icon', data.icon);
-        formData.append('title', data.title)
-        formData.append('description', data.description)
-        fetch('http://localhost:4000/add-service', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
-                e.target.reset()
-            })
-        console.log(data);
-    }
+
     const onSubmit = (data, e) => {
         fetch('http://localhost:4000/add-review', {
             method: "POST",

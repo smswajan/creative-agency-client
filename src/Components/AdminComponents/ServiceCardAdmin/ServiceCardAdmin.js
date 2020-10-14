@@ -4,7 +4,7 @@ import "./ServiceCardAdmin.scss"
 
 const ServiceCardAdmin = () => {
     return (
-        <div className="col-md-6" >
+        <div className="col-md-6 mb-4" >
             <div className="service-card-admin p-4 bg-white">
                 <div className="d-flex justify-content-between">
                     <img src={TwoServiceIco} className=" service-icon" alt="service" />
