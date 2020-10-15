@@ -21,6 +21,7 @@ const AdminServiceList = () => {
                 setLoading(false)
             })
     }, [])
+    document.title = "Admin | Service List"
     return (
         <div>
             <AdminNavbar pageTitle="Services List" />

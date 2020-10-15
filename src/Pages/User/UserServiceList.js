@@ -23,7 +23,8 @@ const ServiceList = () => {
             .then(result => {
                 setOrders(result)
             })
-    }, [])
+    }, []);
+    document.title = "My Purchase List"
     return (
         <div>
             <AdminNavbar pageTitle="My Services" />

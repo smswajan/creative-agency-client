@@ -21,6 +21,7 @@ const AddReview = () => {
             e.target.reset()
         })
     }
+    document.title = "Add Review";
     return (
         <div>
             <AdminNavbar pageTitle="Add Review" />

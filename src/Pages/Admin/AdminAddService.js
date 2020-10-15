@@ -34,6 +34,7 @@ const AdminAddService = () => {
         })
 
     }
+    document.title = "Admin | Add Service"
     return (
         <div>
             <AdminNavbar pageTitle="Add Services" />

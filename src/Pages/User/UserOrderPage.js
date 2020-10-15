@@ -36,6 +36,7 @@ const OrderPage = () => {
             e.target.reset()
         })
     }
+    document.title = "Order New Service"
     return (
         <div>
             <AdminNavbar pageTitle="Order new" />

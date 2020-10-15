@@ -39,7 +39,7 @@ const AdminMakeAdmin = () => {
                 setLoading(false)
             })
     }, [adminCount])
-
+    document.title = "Admin | Make Admin"
     return (
         <div>
             <AdminNavbar pageTitle="Add new admin" />
