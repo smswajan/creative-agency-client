@@ -1,48 +1,22 @@
 import React from 'react';
-import { BiShoppingBag } from 'react-icons/bi'
-import { AiOutlineUserAdd } from 'react-icons/ai';
-import { MdAdd } from 'react-icons/md';
-import AdminNavbar from '../Components/AdminNavbar/AdminNavbar';
-import AdminSidebar from '../Components/AdminSidebar.js/AdminSidebar';
-import AdminServiceListItem from '../Components/AdminComponents/AdminServiceListItem/AdminServiceListItem';
+import AdminNavbar from '../../Components/DashboardNavbar/DashboardNavbar';
+import AdminSidebar from '../../Components/DashboardSidebar/DashboardSidebar';
+import AdminServiceListItem from '../../Components/DashboardComponents/AdminServiceListItem/AdminServiceListItem';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import PageSpinner from '../Components/PageSpinner';
-import SectionSpinner from '../Components/SectionSpinner/SectionSpinner';
+import SectionSpinner from '../../Components/SectionSpinner/SectionSpinner';
+import adminSidebarItems from '../../Components/DashboardSidebar/adminSidebarData';
 
 
-const serviceList = <BiShoppingBag className="sidebar-icon" />
-const addService = <MdAdd className="sidebar-icon" />
-const addAdmin = <AiOutlineUserAdd className="sidebar-icon" />
-const sideBarItems = [
-    {
-        id: 1,
-        icon: serviceList,
-        text: "Service list",
-        url: "/admin/service-list",
-        status: " active"
-    },
-    {
-        id: 2,
-        icon: addService,
-        text: "Add Service",
-        url: "/admin/add-service"
-    },
-    {
-        id: 3,
-        icon: addAdmin,
-        text: "Make Admin",
-        url: "/admin/add-admin"
-    },
-]
 const AdminServiceList = () => {
     const [orders, setOrders] = useState([]);
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
+    const sideBarItems = adminSidebarItems;
+    sideBarItems[0].status = " active";
     useEffect(() => {
         fetch('https://creative-agency-live-api.herokuapp.com/orders', { method: 'GET' })
             .then(response => response.json())
             .then(result => {
-                console.log(result);
                 setOrders(result);
                 setLoading(false)
             })

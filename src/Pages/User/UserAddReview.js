@@ -1,44 +1,15 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { BiCart, BiShoppingBag } from 'react-icons/bi'
-import { MdRateReview } from 'react-icons/md';
-import AdminNavbar from '../Components/AdminNavbar/AdminNavbar';
-import AdminSidebar from '../Components/AdminSidebar.js/AdminSidebar';
-import { useAuth } from '../Hooks/useAuth';
-
-
-
-const biC = <BiCart className="sidebar-icon" />
-const biShoppingBag = <BiShoppingBag className="sidebar-icon" />
-const mdRate = <MdRateReview className="sidebar-icon" />
-
-const sideBarItems = [
-    {
-        id: 1,
-        icon: biC,
-        text: "Order",
-        url: "/orders"
-
-    },
-    {
-        id: 2,
-        icon: biShoppingBag,
-        text: "Service list",
-        url: "/services"
-    },
-    {
-        id: 3,
-        icon: mdRate,
-        text: "Review",
-        status: " active",
-        url: "/reviews"
-
-    },
-]
+import AdminNavbar from '../../Components/DashboardNavbar/DashboardNavbar';
+import AdminSidebar from '../../Components/DashboardSidebar/DashboardSidebar';
+import sideBarItems from '../../Components/DashboardSidebar/SideBarData';
+import { useAuth } from '../../Hooks/useAuth';
 
 const AddReview = () => {
     const { register, handleSubmit } = useForm();
     const { currentUser } = useAuth();
+    let sideBarData = sideBarItems;
+    sideBarData[2].status = " active";
     const onSubmit = (data, e) => {
         data.timeStamp = new Date();
         data.userImage = currentUser.photo;
@@ -47,7 +18,6 @@ const AddReview = () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
         }).then(response => response.json()).then(result => {
-            console.log(result);
             e.target.reset()
         })
     }
@@ -56,7 +26,7 @@ const AddReview = () => {
             <AdminNavbar pageTitle="Add Review" />
             <div className="d-flex">
                 <div className="width-side">
-                    <AdminSidebar sideBarItems={sideBarItems} />
+                    <AdminSidebar sideBarItems={sideBarData} />
                 </div>
                 <div className="width-main bg-admin px-4 py-5">
                     <div className="width-main pt-3 pl-4">

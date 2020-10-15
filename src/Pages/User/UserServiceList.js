@@ -1,42 +1,16 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { BiCart, BiShoppingBag } from 'react-icons/bi'
-import { MdRateReview } from 'react-icons/md';
-import ServiceCardAdmin from '../Components/AdminComponents/ServiceCardAdmin/ServiceCardAdmin';
-import AdminNavbar from '../Components/AdminNavbar/AdminNavbar';
-import AdminSidebar from '../Components/AdminSidebar.js/AdminSidebar';
-import { useAuth } from '../Hooks/useAuth';
+import ServiceCardAdmin from '../../Components/DashboardComponents/ServiceCardAdmin/ServiceCardAdmin';
+import AdminNavbar from '../../Components/DashboardNavbar/DashboardNavbar';
+import AdminSidebar from '../../Components/DashboardSidebar/DashboardSidebar';
+import { useAuth } from '../../Hooks/useAuth';
+import sideBarItems from '../../Components/DashboardSidebar/SideBarData';
 
-
-const biC = <BiCart className="sidebar-icon" />
-const biShoppingBag = <BiShoppingBag className="sidebar-icon" />
-const mdRate = <MdRateReview className="sidebar-icon" />
-const sideBarItems = [
-    {
-        id: 1,
-        icon: biC,
-        text: "Order",
-        url: "/orders"
-
-    },
-    {
-        id: 2,
-        icon: biShoppingBag,
-        text: "Service list",
-        url: "/services",
-        status: " active",
-
-    },
-    {
-        id: 3,
-        icon: mdRate,
-        text: "Review",
-        url: "/reviews"
-    },
-]
 const ServiceList = () => {
     const [orders, setOrders] = useState([]);
     const { currentUser } = useAuth();
+    let sideBarData = sideBarItems;
+    sideBarData[1].status = " active";
     useEffect(() => {
         fetch('https://creative-agency-live-api.herokuapp.com/user/orders?email=' + currentUser.email, {
             headers: {
@@ -55,7 +29,7 @@ const ServiceList = () => {
             <AdminNavbar pageTitle="My Services" />
             <div className="d-flex">
                 <div className="width-side">
-                    <AdminSidebar sideBarItems={sideBarItems} />
+                    <AdminSidebar sideBarItems={sideBarData} />
                 </div>
                 <div className="width-main bg-admin px-4 py-5">
                     <div className="width-main pt-3 pl-4">

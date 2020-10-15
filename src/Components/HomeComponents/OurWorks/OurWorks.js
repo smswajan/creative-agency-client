@@ -2,7 +2,7 @@ import React from 'react';
 import "./OurWorks.scss"
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { CarouselFive, CarouselFour, CarouselOne, CarouselThree, CarouselTwo } from '../../../images';
+import { CarouselFive, CarouselFour, CarouselOne, CarouselTwo } from '../../../images';
 
 const OurWorks = () => {
     return (

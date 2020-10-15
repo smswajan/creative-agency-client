@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 const AdminServiceListItem = ({ orderDetails }) => {
-    const { _id, category, details, email, name, price, status } = orderDetails;
+    const { _id, category, details, email, name, status } = orderDetails;
     const [orderStatus, setOrderStatus] = useState(status)
     const [services, setServices] = useState([]);
     const [serviceName, setServiceName] = useState(null)
@@ -27,7 +27,7 @@ const AdminServiceListItem = ({ orderDetails }) => {
             body: JSON.stringify({ currentStatus })
         }).then(res => res.json())
             .then(result => {
-                console.log(result);
+                console.log("Done");
             })
     }
     const textClass = orderStatus === "Pending" ? "danger" : orderStatus === "OnGoing" ? "warning" : "success"

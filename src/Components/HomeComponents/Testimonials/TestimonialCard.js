@@ -4,7 +4,6 @@ import { CustomerOne, CustomerThree, CustomerTwo } from '../../../images';
 
 const TestimonialCard = ({ info }) => {
     const { company, name, review, userImage } = info;
-    console.log(info);
 
     return (
         <div className=" col-md-4 mb-4">

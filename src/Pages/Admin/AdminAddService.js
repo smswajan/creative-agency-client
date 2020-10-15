@@ -1,58 +1,25 @@
 import React from 'react';
-import { BiShoppingBag } from 'react-icons/bi'
-import { AiOutlineCloudUpload, AiOutlineUserAdd } from 'react-icons/ai';
-import { MdAdd } from 'react-icons/md';
-import AdminNavbar from '../Components/AdminNavbar/AdminNavbar';
-import AdminSidebar from '../Components/AdminSidebar.js/AdminSidebar';
+import { AiOutlineCloudUpload } from 'react-icons/ai';
 import { IconContext } from 'react-icons/lib';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import fireApp from '../Firebase/fire-app';
-
-
-const serviceList = <BiShoppingBag className="sidebar-icon" />
-const addService = <MdAdd className="sidebar-icon" />
-const addAdmin = <AiOutlineUserAdd className="sidebar-icon" />
-const sideBarItems = [
-    {
-        id: 1,
-        icon: serviceList,
-        text: "Service list",
-        url: "/admin/service-list",
-    },
-    {
-        id: 2,
-        icon: addService,
-        text: "Add Service",
-        url: "/admin/add-service",
-        status: " active"
-
-    },
-    {
-        id: 3,
-        icon: addAdmin,
-        text: "Make Admin",
-        url: "/admin/add-admin"
-    },
-]
+import fireApp from '../../Firebase/fire-app';
+import AdminNavbar from '../../Components/DashboardNavbar/DashboardNavbar';
+import AdminSidebar from '../../Components/DashboardSidebar/DashboardSidebar';
+import adminSidebarItems from '../../Components/DashboardSidebar/adminSidebarData';
 
 const AdminAddService = () => {
     const { register, handleSubmit } = useForm();
     const serviceStorageRef = fireApp.storage().ref().child('services');
+    const sideBarItems = adminSidebarItems;
+    sideBarItems[1].status = " active"
 
-    const uploadImage = (e) => {
-        e.preventDefault()
-    }
-
-    // const [file, setFile] = useState(null)
     const handleFormSubmit = (data, e) => {
         const iconFile = data.icon[0];
         const imgRef = serviceStorageRef.child(iconFile.name);
         imgRef.put(iconFile).then(res => {
             imgRef.getDownloadURL().then(res => {
-                console.log(res);
                 data.icon = res;
-                console.log("Data: ", data);
                 fetch('https://creative-agency-live-api.herokuapp.com/add-service', {
                     headers: { "Content-Type": "application/json" },
                     method: 'POST',
@@ -60,7 +27,6 @@ const AdminAddService = () => {
                 })
                     .then(response => response.json())
                     .then(result => {
-                        console.log(result);
                         e.target.reset()
                     })
             }).catch(err => console.log(err))

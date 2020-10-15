@@ -1,64 +1,38 @@
 import React from 'react';
-import AdminNavbar from '../Components/AdminNavbar/AdminNavbar';
-import AdminSidebar from '../Components/AdminSidebar.js/AdminSidebar';
-import { LogoGle } from '../images';
+import { LogoGle } from '../../images';
 import { AiOutlineCloudUpload } from 'react-icons/ai'
 import { IconContext } from 'react-icons'
-import { BiCart, BiShoppingBag } from 'react-icons/bi'
-import { MdRateReview } from 'react-icons/md';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { useAuth } from '../Hooks/useAuth';
-const biC = <BiCart className="sidebar-icon" />
-const biShoppingBag = <BiShoppingBag className="sidebar-icon" />
-const mdRate = <MdRateReview className="sidebar-icon" />
-const sideBarItems = [
-    {
-        id: 1,
-        icon: biC,
-        text: "Order",
-        status: " active",
-        url: "/orders"
+import AdminNavbar from '../../Components/DashboardNavbar/DashboardNavbar';
+import AdminSidebar from '../../Components/DashboardSidebar/DashboardSidebar';
+import { useAuth } from '../../Hooks/useAuth';
+import sideBarItems from '../../Components/DashboardSidebar/SideBarData';
 
-    },
-    {
-        id: 2,
-        icon: biShoppingBag,
-        text: "Service list",
-        url: "/services"
-    },
-    {
-        id: 1,
-        icon: mdRate,
-        text: "Review",
-        url: "/reviews"
-    },
-]
 const OrderPage = () => {
     const { register, handleSubmit } = useForm();
     const [services, setServices] = useState();
     const { currentUser } = useAuth();
+    let sideBarData = sideBarItems;
+    sideBarData[0].status = " active";
     useEffect(() => {
         fetch('https://creative-agency-live-api.herokuapp.com/services', {
             method: 'GET',
         })
             .then(response => response.json())
             .then(result => {
-                console.log(result);
                 setServices(result)
             })
     }, [])
     const onSubmit = (data, e) => {
         data.status = "Pending";
         data.price = Number(data.price)
-        console.log(data);
         fetch('https://creative-agency-live-api.herokuapp.com/add-order', {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
         }).then(response => response.json()).then(result => {
-            console.log(result);
             e.target.reset()
         })
     }
@@ -67,7 +41,7 @@ const OrderPage = () => {
             <AdminNavbar pageTitle="Order new" />
             <div className="d-flex">
                 <div className="width-side">
-                    <AdminSidebar sideBarItems={sideBarItems} />
+                    <AdminSidebar sideBarItems={sideBarData} />
                 </div>
                 <div className="width-main bg-admin px-4 py-5">
                     <div className="row pt-3 pl-4">

@@ -1,7 +1,5 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { TwoServiceIco } from '../../../images';
-import PageSpinner from '../../PageSpinner';
 import SectionSpinner from '../../SectionSpinner/SectionSpinner';
 import "./ServiceCardAdmin.scss"
 
@@ -14,7 +12,6 @@ const ServiceCardAdmin = ({ status, category }) => {
         })
             .then(response => response.json())
             .then(result => {
-                console.log(result[0]);
                 setService(result[0]);
                 setLoading(false)
             })

@@ -3,18 +3,20 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { OneServiceIco, ThreeServiceIco, TwoServiceIco } from '../../../images';
+import SectionSpinner from '../../SectionSpinner/SectionSpinner';
 import "./Services.scss"
 
 const Services = () => {
     const [services, setServices] = useState([]);
+    const [loading, setLoading] = useState(true)
     useEffect(() => {
         fetch('https://creative-agency-live-api.herokuapp.com/services', {
             method: 'GET',
         })
             .then(response => response.json())
             .then(result => {
-                console.log(result);
-                setServices(result)
+                setServices(result);
+                setLoading(false)
             })
     }, [])
 
@@ -43,8 +45,9 @@ const Services = () => {
             <Container>
                 <h2 className="text-center pb-4">Provide awesome <span className="text-success">services</span> </h2>
                 <Row>
+                    {loading && <SectionSpinner />}
                     {
-                        services.map(item => <ServiceCard info={item} key={item._id} />)
+                        services && services.map(item => <ServiceCard info={item} key={item._id} />)
                     }
 
                 </Row>

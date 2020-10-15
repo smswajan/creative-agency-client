@@ -2,11 +2,8 @@ import React from 'react';
 import * as firebase from "firebase/app";
 import "firebase/auth"
 import { useHistory, useLocation } from 'react-router-dom';
-import { useContext } from 'react';
 import GoogleIcon from "../images/icons/google.png"
 import { Container } from 'react-bootstrap';
-import { UserContext } from '../App';
-import firebaseConfig from '../firebase-config';
 import { LogoBrand } from '../images';
 
 
