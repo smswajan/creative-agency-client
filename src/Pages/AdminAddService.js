@@ -7,6 +7,7 @@ import AdminSidebar from '../Components/AdminSidebar.js/AdminSidebar';
 import { IconContext } from 'react-icons/lib';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
+import fireApp from '../Firebase/fire-app';
 
 
 const serviceList = <BiShoppingBag className="sidebar-icon" />
@@ -37,23 +38,35 @@ const sideBarItems = [
 
 const AdminAddService = () => {
     const { register, handleSubmit } = useForm();
+    const serviceStorageRef = fireApp.storage().ref().child('services');
+
+    const uploadImage = (e) => {
+        e.preventDefault()
+    }
+
     // const [file, setFile] = useState(null)
     const handleFormSubmit = (data, e) => {
-        data.icon = data.icon[0]
-        const formData = new FormData();
-        formData.append('icon', data.icon);
-        formData.append('title', data.title)
-        formData.append('description', data.description)
-        fetch('http://localhost:4000/add-service', {
-            method: 'POST',
-            body: formData
+        const iconFile = data.icon[0];
+        const imgRef = serviceStorageRef.child(iconFile.name);
+        imgRef.put(iconFile).then(res => {
+            imgRef.getDownloadURL().then(res => {
+                console.log(res);
+                data.icon = res;
+                console.log("Data: ", data);
+                fetch('https://creative-agency-live-api.herokuapp.com/add-service', {
+                    headers: { "Content-Type": "application/json" },
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log(result);
+                        e.target.reset()
+                    })
+            }).catch(err => console.log(err))
+
         })
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
-                e.target.reset()
-            })
-        console.log(data);
+
     }
     return (
         <div>

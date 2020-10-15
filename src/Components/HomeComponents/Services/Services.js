@@ -8,7 +8,7 @@ import "./Services.scss"
 const Services = () => {
     const [services, setServices] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:4000/services', {
+        fetch('https://creative-agency-live-api.herokuapp.com/services', {
             method: 'GET',
         })
             .then(response => response.json())
@@ -60,11 +60,13 @@ const ServiceCard = ({ info }) => {
 
     return (
         <div className="col-md-4 p-4">
-            <div className="service-card p-5 text-center">
-                <img src={"http://localhost:4000/" + icon} alt="img" className="service-icon mb-3" />
-                <h4 className="mb-3" >{title} </h4>
-                <p>{description}</p>
-            </div>
+            <a href="/orders" className="service-link">
+                <div className="service-card p-5 text-center">
+                    <img src={icon} alt="img" className="service-icon mb-3" />
+                    <h4 className="mb-3" >{title} </h4>
+                    <p>{description}</p>
+                </div>
+            </a>
         </div>
     )
 }

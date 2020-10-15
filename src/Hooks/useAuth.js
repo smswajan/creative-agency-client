@@ -11,11 +11,12 @@ export const AuthContextProvider = ({ children }) => {
 
     useEffect(() => {
         fireApp.auth().onAuthStateChanged((usr) => {
-            const { displayName, email, photoURL } = usr;
-            const { uid } = usr.providerData[0];
-            const signedInUser = { name: displayName, email, photo: photoURL, uid };
-            setCurrentUser(signedInUser);
-            console.log("current user ", usr)
+            if (usr) {
+                const { displayName, email, photoURL } = usr;
+                const { uid } = usr.providerData[0];
+                const signedInUser = { name: displayName, email, photo: photoURL, uid };
+                setCurrentUser(signedInUser);
+            }
             setPending(false);
         });
     }, []);

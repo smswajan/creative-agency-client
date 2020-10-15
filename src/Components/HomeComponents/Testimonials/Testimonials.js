@@ -9,7 +9,7 @@ import "./Testimonials.scss"
 const Testimonials = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:4000/reviews', {
+        fetch('https://creative-agency-live-api.herokuapp.com/reviews', {
             method: 'GET',
         }).then(response => response.json())
             .then(result => {
@@ -43,7 +43,7 @@ const Testimonials = () => {
     return (
         <section className="py-5 container">
             <h2 className="text-primary text-center mt-3 mb-5">Clients <span className="text-success">Feedback</span> </h2>
-            <Row>
+            <Row className="d-flex align-items-stretch">
                 {reviews.map(item => <TestimonialCard info={item} key={item.id} />)}
             </Row>
         </section>

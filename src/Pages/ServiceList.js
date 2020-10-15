@@ -5,6 +5,7 @@ import { MdRateReview } from 'react-icons/md';
 import ServiceCardAdmin from '../Components/AdminComponents/ServiceCardAdmin/ServiceCardAdmin';
 import AdminNavbar from '../Components/AdminNavbar/AdminNavbar';
 import AdminSidebar from '../Components/AdminSidebar.js/AdminSidebar';
+import { useAuth } from '../Hooks/useAuth';
 
 
 const biC = <BiCart className="sidebar-icon" />
@@ -35,11 +36,17 @@ const sideBarItems = [
 ]
 const ServiceList = () => {
     const [orders, setOrders] = useState([]);
+    const { currentUser } = useAuth();
     useEffect(() => {
-        fetch('http://localhost:4000/orders', { method: 'GET' })
+        fetch('https://creative-agency-live-api.herokuapp.com/user/orders?email=' + currentUser.email, {
+            headers: {
+                authorization: `Bearer ${sessionStorage.getItem('token')}`,
+                "Content-Type": "application/json"
+            },
+            method: 'GET',
+        })
             .then(response => response.json())
             .then(result => {
-                console.log(result);
                 setOrders(result)
             })
     }, [])
@@ -53,6 +60,7 @@ const ServiceList = () => {
                 <div className="width-main bg-admin px-4 py-5">
                     <div className="width-main pt-3 pl-4">
                         <div className="row">
+                            {orders.length === 0 && <h4 className="text-center text-danger">Sorry! You haven't placed order yet!</h4>}
                             {
                                 orders.map(item => <ServiceCardAdmin status={item.status} category={item.category} key={item._id} />)
                             }

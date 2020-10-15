@@ -8,6 +8,7 @@ import AdminServiceListItem from '../Components/AdminComponents/AdminServiceList
 import { useState } from 'react';
 import { useEffect } from 'react';
 import PageSpinner from '../Components/PageSpinner';
+import SectionSpinner from '../Components/SectionSpinner/SectionSpinner';
 
 
 const serviceList = <BiShoppingBag className="sidebar-icon" />
@@ -38,7 +39,7 @@ const AdminServiceList = () => {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true)
     useEffect(() => {
-        fetch('http://localhost:4000/orders', { method: 'GET' })
+        fetch('https://creative-agency-live-api.herokuapp.com/orders', { method: 'GET' })
             .then(response => response.json())
             .then(result => {
                 console.log(result);
@@ -64,7 +65,7 @@ const AdminServiceList = () => {
                                     <div className="col-3"><span className="text-secondary">Product Details</span> </div>
                                     <div className="col-2"><span className="text-secondary">Status</span> </div>
                                 </div>
-                                {loading && <PageSpinner />}
+                                {loading && <SectionSpinner />}
                                 {orders && orders.map(item => <AdminServiceListItem orderDetails={item} key={item._id} />)}
 
                             </div>

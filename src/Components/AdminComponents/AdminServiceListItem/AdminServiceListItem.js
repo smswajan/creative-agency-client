@@ -7,7 +7,7 @@ const AdminServiceListItem = ({ orderDetails }) => {
     const [services, setServices] = useState([]);
     const [serviceName, setServiceName] = useState(null)
     useEffect(() => {
-        fetch('http://localhost:4000/services', {
+        fetch('https://creative-agency-live-api.herokuapp.com/services', {
             method: 'GET',
         })
             .then(response => response.json())
@@ -19,7 +19,7 @@ const AdminServiceListItem = ({ orderDetails }) => {
     const updateOrder = (e) => {
         const currentStatus = e.target.value
         setOrderStatus(currentStatus);
-        fetch('http://localhost:4000/update-order/' + _id, {
+        fetch('https://creative-agency-live-api.herokuapp.com/update-order/' + _id, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'

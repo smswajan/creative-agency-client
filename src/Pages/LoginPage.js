@@ -19,13 +19,12 @@ const LoginPage = () => {
     const handleGoogleSignIn = () => {
         var provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider).then(function (result) {
-            console.log(result.user);
             const { displayName, email } = result.user;
             const signedInUser = { name: displayName, email }
             storeAuthToken();
         }).catch(function (error) {
             const errorMessage = error.message;
-            console.log(errorMessage);
+            alert(errorMessage);
         });
     }
 
@@ -40,10 +39,9 @@ const LoginPage = () => {
     }
     const signOut = () => {
         firebase.auth().signOut().then(res => {
-            console.log("logged out");
             sessionStorage.removeItem("token")
         }).catch(err => {
-            console.log(err);
+            alert(err);
         })
     }
     return (

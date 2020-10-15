@@ -9,6 +9,7 @@ import { MdRateReview } from 'react-icons/md';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useAuth } from '../Hooks/useAuth';
 const biC = <BiCart className="sidebar-icon" />
 const biShoppingBag = <BiShoppingBag className="sidebar-icon" />
 const mdRate = <MdRateReview className="sidebar-icon" />
@@ -37,8 +38,9 @@ const sideBarItems = [
 const OrderPage = () => {
     const { register, handleSubmit } = useForm();
     const [services, setServices] = useState();
+    const { currentUser } = useAuth();
     useEffect(() => {
-        fetch('http://localhost:4000/services', {
+        fetch('https://creative-agency-live-api.herokuapp.com/services', {
             method: 'GET',
         })
             .then(response => response.json())
@@ -51,7 +53,7 @@ const OrderPage = () => {
         data.status = "Pending";
         data.price = Number(data.price)
         console.log(data);
-        fetch('http://localhost:4000/add-order', {
+        fetch('https://creative-agency-live-api.herokuapp.com/add-order', {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
@@ -71,8 +73,8 @@ const OrderPage = () => {
                     <div className="row pt-3 pl-4">
                         <div className="col-7">
                             <form onSubmit={handleSubmit(onSubmit)} className="order-form">
-                                <input ref={register({ required: true })} type="text" name="name" placeholder="Your name / company's name" id="" className="form-control-lg mb-3 py-4 form-control" />
-                                <input ref={register({ required: true })} type="email" name="email" className="form-control-lg mb-3 py-4 form-control" placeholder="Your email address" />
+                                <input ref={register({ required: true })} type="text" defaultValue={currentUser ? currentUser.name : "your name"} name="name" placeholder="Your name / company's name" id="" className="form-control-lg mb-3 py-4 form-control" />
+                                <input ref={register({ required: true })} type="email" defaultValue={currentUser.email} name="email" className="form-control-lg mb-3 py-4 form-control" placeholder="Your email address" />
                                 {/* <input ref={register({ required: true })} type="text" name="category" className="form-control-lg mb-3 py-4 form-control" placeholder="Graphics design" /> */}
                                 <select name="category" ref={register({ required: true })} className="custom-select mb-3" >
                                     <option >Select your service</option>
@@ -81,7 +83,7 @@ const OrderPage = () => {
                                 <textarea ref={register({ required: true })} placeholder="Project Details" name="details" cols="30" rows="4" className="form-control-lg mb-3 py-4 form-control"></textarea>
                                 <div className="row mb-5">
                                     <div className="col-6">
-                                        <input ref={register({ required: true })} type="num" name="price" className="form-control py-4" />
+                                        <input ref={register({ required: true })} type="num" name="price" placeholder="Price" className="form-control py-4" />
                                     </div>
                                     <div className="col-6">
                                         <div className="upload-btn-wrapper">
