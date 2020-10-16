@@ -3,10 +3,10 @@
 }
 .service-card:hover {
     cursor: pointer;
-    box-shadow: 0 0 60px rgba(68, 68, 68, 0.195);
+    box-shadow: 0 0 60px rgba(68, 68, 68, 0.23);
     border-radius: 10px;
     transform: translateY(-4px);
-    transition: all 0.3s ease-in;
+    transition: all 0.2s ease-in;
 }
 a.service-link:hover {
     text-decoration: none;

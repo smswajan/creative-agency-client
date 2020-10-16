@@ -12,7 +12,7 @@ const TestimonialCard = ({ info }) => {
                     <img src={userImage} alt={name} className="customer-avatar" />
                     <div className="pl-4">
                         <h6 className="mb-0">{name} </h6>
-                        <p className="mb-0"><strong>{company} </strong> </p>
+                        <p className="mb-0 font-weight-bold">{company}</p>
                     </div>
                 </div>
                 <p>{review} </p>

@@ -18,7 +18,9 @@ export const AuthContextProvider = ({ children }) => {
                 setCurrentUser(signedInUser);
             }
             setPending(false);
+
         });
+
     }, []);
     if (pending) {
         return <><PageSpinner /></>;

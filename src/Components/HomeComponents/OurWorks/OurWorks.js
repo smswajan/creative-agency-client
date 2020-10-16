@@ -1,41 +1,42 @@
 import React from 'react';
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
 import "./OurWorks.scss"
-import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { CarouselFive, CarouselFour, CarouselOne, CarouselTwo } from '../../../images';
 
+const options = {
+    loop: true,
+    autoplay: true,
+    autoplayTimeout: 2000,
+    margin: 20,
+    dots: true,
+    responsiveClass: true,
+    responsive: {
+        0: {
+            items: 1
+        },
+        576: {
+            items: 3
+        }
+    }
+}
 const OurWorks = () => {
     return (
         <section className="py-5 bg-primary">
             <h2 className="text-white text-center mt-3">Here are some of <span className="text-success">our works</span></h2>
             <div className="container">
-                <div className="row mt-5">
-                    <div className="col-md-8 offset-md-2">
+                <OwlCarousel className='owl-theme mt-5 pb-md-0 mb-5'
+                    {...options}
+                >
+                    <div><img src={CarouselOne} alt="" /></div>
+                    <div><img src={CarouselTwo} alt="" /></div>
+                    <div><img src={CarouselFive} alt="" /></div>
+                    <div><img src={CarouselFour} alt="" /></div>
+                    <div><img src={CarouselTwo} alt="" /></div>
+                    <div><img src={CarouselFive} alt="" /></div>
 
-                        <Carousel showStatus={true} autoPlay={true} infiniteLoop={true} showArrows={true} showThumbs={false} >
-                            <div>
-                                <img src={CarouselOne} alt="carousel-img" className="" />
-                                <p className="legend">Carousel 1</p>
-                            </div>
-                            <div>
-                                <img src={CarouselTwo} alt="carousel-img" className="" />
-                                <p className="legend">Carousel 2</p>
-                            </div>
-                            <div>
-                                <img src={CarouselOne} alt="carousel-img" className="" />
-                                <p className="legend">Carousel 3</p>
-                            </div>
-                            <div>
-                                <img src={CarouselFour} alt="carousel-img" className="" />
-                                <p className="legend">Carousel 4</p>
-                            </div>
-                            <div>
-                                <img src={CarouselFive} alt="carousel-img" className="" />
-                                <p className="legend">Carousel 5</p>
-                            </div>
-                        </Carousel>
-                    </div>
-                </div>
+                </OwlCarousel>
             </div>
         </section>
     );

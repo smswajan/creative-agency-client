@@ -7,9 +7,31 @@ import fireApp from '../../Firebase/fire-app';
 import AdminNavbar from '../../Components/DashboardNavbar/DashboardNavbar';
 import AdminSidebar from '../../Components/DashboardSidebar/DashboardSidebar';
 import adminSidebarItems from '../../Components/DashboardSidebar/adminSidebarData';
+import { useAuth } from '../../Hooks/useAuth';
+import { useEffect } from 'react';
+import SectionSpinner from '../../Components/SectionSpinner/SectionSpinner';
 
 const AdminAddService = () => {
     const { register, handleSubmit } = useForm();
+    const { currentUser } = useAuth();
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        if (currentUser) {
+            setLoading(true);
+            fetch('https://creative-agency-live-api.herokuapp.com/is-admin', {
+                method: "POST",
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify({ email: currentUser.email })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    setIsAdmin(data)
+                    setLoading(false)
+                })
+        }
+
+    }, [])
     const serviceStorageRef = fireApp.storage().ref().child('services');
     const sideBarItems = adminSidebarItems;
     sideBarItems[1].status = " active"
@@ -47,7 +69,9 @@ const AdminAddService = () => {
                         <div className="row">
                             <div className="col-6 p-5">
                                 {/* form */}
-                                <form className="" onSubmit={handleSubmit(handleFormSubmit)}>
+                                {loading && <SectionSpinner />}
+                                {!loading && !isAdmin && <h4 className="text-danger">Sorry! You are not admin. Please login with <span className="text-success">"programming.hero.instructor@gmail.com"</span>.</h4>}
+                                {isAdmin && <form className="" onSubmit={handleSubmit(handleFormSubmit)}>
                                     <div className="row mb-4">
                                         <div className="col-6">
                                             {/* title */}
@@ -71,7 +95,8 @@ const AdminAddService = () => {
                                     <textarea placeholder="Project Details" name="description" cols="30" rows="4" className=" mb-3 py-4 mb-4 form-control" ref={register({ required: true })} ></textarea>
 
                                     <button type="submit" className="btn btn-primary px-5 py-3">Add New</button>
-                                </form>
+                                </form>}
+
                             </div>
                         </div>
                     </div>
