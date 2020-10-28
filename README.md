@@ -6,11 +6,11 @@ Key features:
 * CRUD functionalities for add, edit, remove services and orders
 * Organized admin panel
 Libraries used:
-    * React JS
-    * React Router Dom
-    * Firebase (for hosting and image storage)
-    * React Hook Form
-    * Bootstrap 4
-    * Spinner
+* React JS
+* React Router Dom
+* Firebase (for hosting and image storage)
+* React Hook Form
+* Bootstrap 4
+* Spinner
 ___
 [My Website](https://swajan.io) | [Email: contact@swajan.io](mailto:contact@swajan.io) | [Resume](swajan.io)
