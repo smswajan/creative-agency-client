@@ -2,9 +2,9 @@
 [Visit](https://creative-agency-live.web.app/) | [Server Repository](https://github.com/smswajan/creative-agency-server)
 ___
 Key features:
-    * Dynamic website, backed by NodeJS and MongoDB
-    * CRUD functionalities for add, edit, remove services and orders
-    * Organized admin panel
+* Dynamic website, backed by NodeJS and MongoDB
+* CRUD functionalities for add, edit, remove services and orders
+* Organized admin panel
 Libraries used:
     * React JS
     * React Router Dom
