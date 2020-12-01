@@ -37,6 +37,7 @@ const AdminAddService = () => {
     sideBarItems[1].status = " active"
 
     const handleFormSubmit = (data, e) => {
+        console.log(data);
         const iconFile = data.icon[0];
         const imgRef = serviceStorageRef.child(iconFile.name);
         imgRef.put(iconFile).then(res => {

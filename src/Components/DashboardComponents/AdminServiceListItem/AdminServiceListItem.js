@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 const AdminServiceListItem = ({ orderDetails }) => {
     const { _id, category, details, email, name, status } = orderDetails;
-    const [orderStatus, setOrderStatus] = useState(status)
+    const [orderStatus, setOrderStatus] = useState(status);
     const [services, setServices] = useState([]);
     const [serviceName, setServiceName] = useState(null)
     useEffect(() => {
