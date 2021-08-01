@@ -20,6 +20,7 @@ export const AuthContextProvider = ({ children }) => {
             setPending(false);
 
         });
+        
 
     }, []);
     if (pending) {

@@ -23,6 +23,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "firebase deploy --only hosting:creative-agency-live",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
